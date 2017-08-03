@@ -8,18 +8,31 @@ dates.sort(function(a, b) {
 });
 
 var selTag = document.getElementsByTagName('*'),
-  date_1 = dates[0],
-  ary = [];
+  ary = [], cpt=0;
+var n = 0;
 // boucle sur toutes les balises avec date
 for (var i = 0; i < selTag.length; i++) {
-  if (selTag[i].textContent == date_1) {
-    ary.push(selTag[i]);
-    console.info(selTag[i]);
+  if (selTag[i].textContent === dates[0]) {
+    console.info('date_1 ' + selTag[i].innerHTML);
+    ary[0] = selTag[i];
+  }else if(selTag[i].textContent === dates[1]) {
+    console.log('date_2 ' + selTag[i].innerHTML);
+    ary[1] = selTag[i];
+  }else if(selTag[i].textContent === dates[2]) {
+    if(selTag[i].length == 0) {
+      console.log('date_3 ' + selTag[i].innerHTML);
+      ary[2] = selTag[i];
+    }else{
+      console.log('date_3 ' + selTag[i].innerHTML);
+      ary[2] += selTag[i]; // undefined
+      n++;
+    }
   }
 }
-for (var i = 0; i < ary.length; i++) {
-  ary[i].innerHTML = '<span style="background-color: #FFFF00;">' + ary[0].innerHTML + '</span>';
-}
+// if(selTag[i].length != 0) console.log(selTag[0].innerHTML);
+//  && selTag[i+=1].textContent === dates[2]
+// ary.push(selTag[i]);
+// ary[0].innerHTML = '<span style="background-color: #FFFF00;">' + dates[0] + '</span>'
 
 // 2- partie wrap dead job
 var dead = new RegExp(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/ig),
